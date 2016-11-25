@@ -49,8 +49,29 @@ figdict = {
     }
 
 response = input("Enter a Baudot-encoded message: \n")
-codes = response.split(' ')
+#EXTRA CREDIT:
+def addspace(start,stop):
+    global codes
+    codes.append(response[start:stop])
+    if (stop + 5) <= len(response):
+        addspace(start + 5, stop + 5)
+    else:
+        pass
+    return codes
+
+if ' ' in response:
+    response.strip()
+    codes = response.split(' ')
+else:
+    codes = []
+    codes = addspace(0,5)
+    
+
+    
 translation = ''
+
+def elimspace(start,stop):
+    codes.append(response[start:stop])
 
 def translate(dictionary):
     global translation, codes
@@ -68,20 +89,6 @@ def translate(dictionary):
 
 translate(letterdict)            
 print (translation)
-
-
-#TESTS:
-
-#11110 00111 01100 01111 10011 00001 00100 11100 10100 00111 00001 11100 11101 10000 11011 10101 01100 01111 01000
-
-#11010 01000 11111 00011 11011 11011 11100
-
-#10110 00101 01000 00001 00010 10000 11110 10000 00010 00001 00111 11100 10110 10011 00101 
-
-
-
-
-
 
 
 
