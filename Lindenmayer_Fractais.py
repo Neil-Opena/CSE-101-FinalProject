@@ -12,13 +12,33 @@ productiondict = {}
 
 pattern = screen.textinput("Enter Seed String", "Enter the seed string: ")
 
-numrules = screen.numinput("Enter Number of Rules", "Enter the amount of production rules: ")
+#This is for the regular project
+"""numrules = screen.numinput("Enter Number of Rules", "Enter the amount of production rules: ")
+
 for rule in range(int(numrules)):
     targetchar = screen.textinput("Enter Target Character", "Enter the target character: ")
     replacement = screen.textinput("Enter Replacement", "Enter the replacement: ")
     productiondict[targetchar] = replacement
+
+if numrules > 0:
+    numrecursion = screen.numinput("Enter Recursion Depth", "Enter the recursion depth: ")
+else:
+    numrecursion = 0"""
+
+
+#EXTRA CREDIT:
+inputFile = open('test.txt')
+text = inputFile.readlines()
     
-numrecursion = screen.numinput("Enter Recursion Depth", "Enter the recursion depth: ")    
+keys = text[::2]
+values = text[1::2]
+    
+for key in keys:
+    productiondict[key] = values[keys.index(key)]
+    
+inputFile.close()
+    
+numrecursion = screen.numinput("Enter Recursion Depth", "Enter the recursion depth: ")
 
 dist = screen.numinput("Enter Distance", "Enter the fixed distance: ")
 ang = screen.numinput("Enter Angle", "Enter the fixed angle: ")
@@ -32,6 +52,8 @@ def deriveLSystem(seed, productions, depth):
     else:
         newPattern = ''
         for char in seed:
+            #
+            char = (char + '\n')
             if char in productions:
                 newPattern = (newPattern + productions[char])
             else:

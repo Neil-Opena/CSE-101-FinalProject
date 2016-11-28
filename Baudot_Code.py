@@ -3,8 +3,7 @@
 #Final Programming Project
 #Part 1: Baudot Code
 
-#if...value == 00011 / 00010 / 00001 - special
-#else.....return ()
+
 
 letterdict = {
     
